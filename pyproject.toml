@@ -1,0 +1,15 @@
+[project]
+name = "student-retention"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "diagrams>=0.24.4",
+    "matplotlib>=3.10.6",
+    "numpy>=2.3.3",
+    "pandas>=2.3.2",
+    "plotly>=6.3.0",
+    "ruff>=0.13.2",
+    "scikit-learn>=1.7.2",
+]
