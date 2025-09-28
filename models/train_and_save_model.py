@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 def load_and_preprocess_data():
     """Load and preprocess the data exactly as done in the notebook"""
     # Load data
-    data_file_name_path = "./data/data.csv"
+    data_file_name_path = "../data/data.csv"
     master_raw_data = pd.read_csv(data_file_name_path)
     data = master_raw_data.copy()
 
