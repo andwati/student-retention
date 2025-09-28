@@ -12,13 +12,13 @@ from typing import Dict, Any, List
 def load_model_and_info():
     """Load the trained model and preprocessing information"""
     try:
-        with open('random_forest_model.pkl', 'rb') as f:
+        with open('./models/random_forest_model.pkl', 'rb') as f:
             model = pickle.load(f)
 
-        with open('preprocessing_info.pkl', 'rb') as f:
+        with open('./models/preprocessing_info.pkl', 'rb') as f:
             preprocessing_info = pickle.load(f)
 
-        with open('feature_names.pkl', 'rb') as f:
+        with open('./models/feature_names.pkl', 'rb') as f:
             feature_names = pickle.load(f)
 
         return model, preprocessing_info, feature_names

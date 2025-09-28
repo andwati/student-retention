@@ -275,7 +275,7 @@ ROSE_PINE_THEME = """
 """
 
 PAGE_CONFIG = {
-    "Page_title": "Student Success Predictor",
+    "page_title": "Student Success Predictor",
     "page_icon": "📊",
     "layout": "wide",
     "initial_sidebar_state": "expanded",

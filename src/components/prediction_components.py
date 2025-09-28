@@ -9,10 +9,12 @@ import time
 import json
 from typing import Dict, Any, Tuple, List
 
+from src.utils.models_utils import preprocess_input, generate_recommendations, validate_input
+
 
 def render_prediction_section(model, preprocessing_info, user_input: Dict[str, Any]) -> None:
     """Render the prediction section with enhanced animations"""
-    from ..utils.model_utils import preprocess_input, generate_recommendations
+
 
     # Prediction button with enhanced styling
     predict_button = st.button("🔬 Analyze Student Data", type="primary", use_container_width=True)
@@ -89,7 +91,7 @@ def render_prediction_section(model, preprocessing_info, user_input: Dict[str, A
 
 def render_recommendations(predicted_outcome: str, user_input: Dict[str, Any]) -> None:
     """Render personalized recommendations section"""
-    from ..utils.model_utils import generate_recommendations
+
 
     st.markdown("### 💡 Personalized Recommendations")
 
@@ -171,7 +173,6 @@ def render_probability_charts(prediction_proba: List[float]) -> None:
 
 def render_model_info_sidebar(user_input: Dict[str, Any]) -> None:
     """Render model information and validation in sidebar"""
-    from ..utils.model_utils import validate_input
     from ..config.theme import MODEL_METRICS
 
     st.markdown('<h2 class="sub-header">📊 Model Insights</h2>', unsafe_allow_html=True)
