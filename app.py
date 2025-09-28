@@ -51,10 +51,10 @@ def collect_user_input():
         academic_bg = render_academic_background_section(preset, feature_maps)
 
         # Family background
-        family_bg = render_family_background_section(feature_maps)
+        family_bg = render_family_background_section(preset, feature_maps)
 
         # Financial and social factors
-        financial_social = render_financial_social_section()
+        financial_social = render_financial_social_section(preset)
 
         # Academic performance
         academic_performance = render_academic_performance_section(preset)

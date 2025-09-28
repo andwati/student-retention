@@ -17,19 +17,19 @@ def create_feature_mappings():
         6: "Legally Separated",
     }
 
-    # Application mode mapping
+    # Application mode mapping (from data dictionary)
     application_mode_map = {
-        1: "1st Phase - General Contingent",
+        1: "1st phase - general contingent",
         2: "Ordinance No. 612/93",
-        5: "1st Phase - Special Contingent (Azores)",
-        7: "Holders of Other Higher Courses",
+        5: "1st phase - special contingent (Azores Island)",
+        7: "Holders of other higher courses",
         10: "Ordinance No. 854-B/99",
-        15: "International Student (Bachelor)",
-        16: "1st Phase - Special Contingent (Madeira)",
-        17: "2nd Phase - General Contingent",
-        18: "3rd Phase - General Contingent",
-        26: "Ordinance No. 533-A/99, item b2",
-        27: "Ordinance No. 533-A/99, item b3",
+        15: "International student (bachelor)",
+        16: "1st phase - special contingent (Madeira Island)",
+        17: "2nd phase - general contingent",
+        18: "3rd phase - general contingent",
+        26: "Ordinance No. 533-A/99, item b2 (Different Plan)",
+        27: "Ordinance No. 533-A/99, item b3 (Other Institution)",
         39: "Over 23 years old",
         42: "Transfer",
         43: "Change of course",
@@ -60,7 +60,7 @@ def create_feature_mappings():
         9991: "Management (evening attendance)",
     }
 
-    # Previous qualification mapping
+    # Previous qualification mapping (from data dictionary)
     qualification_map = {
         1: "Secondary education",
         2: "Higher education - bachelor's degree",
@@ -77,7 +77,7 @@ def create_feature_mappings():
         38: "Basic education 2nd cycle (6th/7th/8th year) or equiv.",
         39: "Technological specialization course",
         40: "Higher education - degree (1st cycle)",
-        42: "Professional course",
+        42: "Professional higher technical course",
         43: "Higher education - master (2nd cycle)",
     }
 
@@ -117,12 +117,38 @@ def create_feature_mappings():
         194: "Meal preparation assistants",
     }
 
+    # Nationality mapping (from data dictionary)
+    nationality_map = {
+        1: "Portuguese",
+        2: "German", 
+        6: "Spanish",
+        11: "Italian",
+        13: "Dutch",
+        14: "English",
+        17: "Lithuanian",
+        21: "Angolan",
+        22: "Cape Verdean",
+        24: "Guinean",
+        25: "Mozambican",
+        26: "Santomean",
+        32: "Turkish",
+        41: "Brazilian",
+        62: "Romanian",
+        100: "Moldova (Republic of)",
+        101: "Mexican",
+        103: "Ukrainian",
+        105: "Russian",
+        108: "Cuban",
+        109: "Colombian",
+    }
+
     return {
         "marital_status": marital_status_map,
         "application_mode": application_mode_map,
         "course": course_map,
         "qualification": qualification_map,
         "occupation": occupation_map,
+        "nationality": nationality_map,
     }
 
 
@@ -136,15 +162,39 @@ PRESET_CONFIGURATIONS = {
         "course": 9254,
         "prev_grade": 120,
         "adm_grade": 120,
+        # Family background
+        "mothers_qualification": 1,  # Secondary education
+        "fathers_qualification": 1,  # Secondary education
+        "mothers_occupation": 4,     # Administrative staff
+        "fathers_occupation": 7,     # Skilled workers
+        # Financial & social
+        "displaced": 0,
+        "educational_special_needs": 0,
+        "debtor": 0,
+        "tuition_fees_up_to_date": 1,
+        "scholarship_holder": 0,
+        "international": 0,
     },
     "Typical Graduate Student": {
-        "age": 19,
-        "gender": 1,
-        "marital": 1,
-        "app_mode": 15,
-        "course": 9254,
-        "prev_grade": 160,
-        "adm_grade": 142,
+        "age": 18,  # Slightly younger, traditional student age
+        "gender": 0,  # Female students often have slightly higher graduation rates
+        "marital": 1,  # Single
+        "app_mode": 1,  # 1st phase general contingent (most competitive)
+        "course": 9500,  # Nursing (typically high graduation rate)
+        "prev_grade": 170,  # Higher previous qualification grade
+        "adm_grade": 150,  # Higher admission grade
+        # Family background
+        "mothers_qualification": 2,  # Higher education - bachelor's degree
+        "fathers_qualification": 2,  # Higher education - bachelor's degree
+        "mothers_occupation": 2,     # Specialists in intellectual activities
+        "fathers_occupation": 2,     # Specialists in intellectual activities
+        # Financial & social
+        "displaced": 0,
+        "educational_special_needs": 0,
+        "debtor": 0,
+        "tuition_fees_up_to_date": 1,
+        "scholarship_holder": 1,     # Has scholarship (positive factor)
+        "international": 0,
     },
     "At-Risk Student": {
         "age": 22,
@@ -154,15 +204,39 @@ PRESET_CONFIGURATIONS = {
         "course": 171,
         "prev_grade": 100,
         "adm_grade": 110,
+        # Family background
+        "mothers_qualification": 19,  # Basic education 3rd cycle
+        "fathers_qualification": 19,  # Basic education 3rd cycle
+        "mothers_occupation": 9,      # Unskilled workers
+        "fathers_occupation": 9,      # Unskilled workers
+        # Financial & social
+        "displaced": 0,
+        "educational_special_needs": 0,
+        "debtor": 1,                  # Has debts (risk factor)
+        "tuition_fees_up_to_date": 0, # Behind on tuition
+        "scholarship_holder": 0,
+        "international": 0,
     },
     "International Student": {
         "age": 21,
         "gender": 0,
         "marital": 1,
-        "app_mode": 1,
+        "app_mode": 15,  # International student (bachelor)
         "course": 9238,
         "prev_grade": 135,
         "adm_grade": 130,
+        # Family background
+        "mothers_qualification": 2,  # Higher education - bachelor's degree
+        "fathers_qualification": 2,  # Higher education - bachelor's degree
+        "mothers_occupation": 2,     # Specialists in intellectual activities
+        "fathers_occupation": 2,     # Specialists in intellectual activities
+        # Financial & social
+        "displaced": 0,
+        "educational_special_needs": 0,
+        "debtor": 0,
+        "tuition_fees_up_to_date": 1,
+        "scholarship_holder": 0,
+        "international": 1,          # Is international student
     },
 }
 
@@ -190,7 +264,7 @@ ACADEMIC_DEFAULTS = {
         "1st_sem": {
             "enrolled": 6,
             "approved": 6,
-            "grade": 14,
+            "grade": 16,  # Higher grade (closer to maximum of 20)
             "credited": 0,
             "evaluations": 6,
             "without": 0,
@@ -198,7 +272,7 @@ ACADEMIC_DEFAULTS = {
         "2nd_sem": {
             "enrolled": 6,
             "approved": 6,
-            "grade": 14,
+            "grade": 16,  # Higher grade (closer to maximum of 20)
             "credited": 0,
             "evaluations": 6,
             "without": 0,

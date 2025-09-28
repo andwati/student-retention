@@ -58,7 +58,8 @@ def render_personal_info_section(preset: str, feature_maps: Dict) -> Dict[str, A
 
     nationality = st.selectbox(
         "Nationality",
-        [1, 2, 6, 11, 13, 14, 17, 21, 22, 24, 25, 26, 32, 41, 62, 100, 101, 103, 105, 108, 109],
+        options=list(feature_maps['nationality'].keys()),
+        format_func=lambda x: feature_maps['nationality'][x],
         index=0
     )
 
@@ -143,34 +144,40 @@ def render_academic_background_section(preset: str, feature_maps: Dict) -> Dict[
     }
 
 
-def render_family_background_section(feature_maps: Dict) -> Dict[str, Any]:
+def render_family_background_section(preset: str, feature_maps: Dict) -> Dict[str, Any]:
     """Render family background input section"""
     st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
     st.markdown("### 👨‍👩‍👧‍👦 Family Background")
     st.markdown('<div class="info-box">Parent education and occupation information</div>', unsafe_allow_html=True)
 
+    defaults = PRESET_CONFIGURATIONS[preset]
+
     mothers_qualification = st.selectbox(
         "Mother's Qualification",
         options=list(feature_maps['qualification'].keys()),
-        format_func=lambda x: feature_maps['qualification'].get(x, f"Qualification {x}")
+        format_func=lambda x: feature_maps['qualification'].get(x, f"Qualification {x}"),
+        index=list(feature_maps['qualification'].keys()).index(defaults["mothers_qualification"]) if defaults["mothers_qualification"] in feature_maps['qualification'] else 0
     )
 
     fathers_qualification = st.selectbox(
         "Father's Qualification",
         options=list(feature_maps['qualification'].keys()),
-        format_func=lambda x: feature_maps['qualification'].get(x, f"Qualification {x}")
+        format_func=lambda x: feature_maps['qualification'].get(x, f"Qualification {x}"),
+        index=list(feature_maps['qualification'].keys()).index(defaults["fathers_qualification"]) if defaults["fathers_qualification"] in feature_maps['qualification'] else 0
     )
 
     mothers_occupation = st.selectbox(
         "Mother's Occupation",
         options=list(feature_maps['occupation'].keys()),
-        format_func=lambda x: feature_maps['occupation'].get(x, f"Occupation {x}")
+        format_func=lambda x: feature_maps['occupation'].get(x, f"Occupation {x}"),
+        index=list(feature_maps['occupation'].keys()).index(defaults["mothers_occupation"]) if defaults["mothers_occupation"] in feature_maps['occupation'] else 0
     )
 
     fathers_occupation = st.selectbox(
         "Father's Occupation",
         options=list(feature_maps['occupation'].keys()),
-        format_func=lambda x: feature_maps['occupation'].get(x, f"Occupation {x}")
+        format_func=lambda x: feature_maps['occupation'].get(x, f"Occupation {x}"),
+        index=list(feature_maps['occupation'].keys()).index(defaults["fathers_occupation"]) if defaults["fathers_occupation"] in feature_maps['occupation'] else 0
     )
 
     return {
@@ -181,12 +188,14 @@ def render_family_background_section(feature_maps: Dict) -> Dict[str, Any]:
     }
 
 
-def render_financial_social_section() -> Dict[str, Any]:
+def render_financial_social_section(preset: str) -> Dict[str, Any]:
     """Render financial and social factors input section"""
     st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
     st.markdown("### 💰 Financial & Social")
     st.markdown('<div class="info-box">Student financial status and special circumstances</div>',
                 unsafe_allow_html=True)
+
+    defaults = PRESET_CONFIGURATIONS[preset]
 
     col1, col2 = st.columns(2)
     with col1:
@@ -194,18 +203,21 @@ def render_financial_social_section() -> Dict[str, Any]:
             "Displaced Student",
             [0, 1],
             format_func=lambda x: "No" if x == 0 else "Yes",
+            index=defaults["displaced"],
             horizontal=True
         )
         educational_special_needs = st.radio(
             "Educational Special Needs",
             [0, 1],
             format_func=lambda x: "No" if x == 0 else "Yes",
+            index=defaults["educational_special_needs"],
             horizontal=True
         )
         debtor = st.radio(
             "Has Outstanding Debts",
             [0, 1],
             format_func=lambda x: "No" if x == 0 else "Yes",
+            index=defaults["debtor"],
             horizontal=True
         )
     with col2:
@@ -213,18 +225,21 @@ def render_financial_social_section() -> Dict[str, Any]:
             "Tuition Fees Up to Date",
             [0, 1],
             format_func=lambda x: "No" if x == 0 else "Yes",
+            index=defaults["tuition_fees_up_to_date"],
             horizontal=True
         )
         scholarship_holder = st.radio(
             "Scholarship Holder",
             [0, 1],
             format_func=lambda x: "No" if x == 0 else "Yes",
+            index=defaults["scholarship_holder"],
             horizontal=True
         )
         international = st.radio(
             "International Student",
             [0, 1],
             format_func=lambda x: "No" if x == 0 else "Yes",
+            index=defaults["international"],
             horizontal=True
         )
 
