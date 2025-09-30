@@ -1,0 +1,5 @@
+digraph "Student Retention Predictor Architecture" {
+	graph [bgcolor=transparent dpi=300 fontcolor="#2D3436" fontname="Sans-Serif" fontsize=45 label="Student Retention Predictor Architecture" margin=0.5 nodesep=0.60 pad=2.0 rankdir=TB ranksep=0.75 splines=ortho]
+	node [color="#4a5568" fillcolor="#f7fafc" fixedsize=true fontcolor="#2d3748" fontname="Sans-Serif" fontsize=14 height=1.4 imagescale=true labelloc=b shape=box style="rounded,filled" width=1.4]
+	edge [color="#4a5568" fontcolor="#4a5568" fontsize=12]
+}

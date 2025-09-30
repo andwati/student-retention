@@ -1,0 +1,8 @@
+digraph Users {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="User Layer" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho style=dotted]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	e79ce4bc44eb491994406be045426c22 [label=Admin height=1.9 image="C:\Users\ian\dev\student-retention\.venv\Lib\site-packages\resources/onprem/client\user.png" shape=none]
+	"00031a42a8bb4703ba1210f4a164f2c2" [label=Educator height=1.9 image="C:\Users\ian\dev\student-retention\.venv\Lib\site-packages\resources/onprem/client\user.png" shape=none]
+	f1824916c09f467e872a27833d9b90a6 [label="Student/User" height=1.9 image="C:\Users\ian\dev\student-retention\.venv\Lib\site-packages\resources/onprem/client\user.png" shape=none]
+}
